@@ -77,7 +77,7 @@ function main() {
     if (grade === null) {
         console.log('Error: Score must be between 0 and 100.');
     } else {
-        console.log(`Grade: ${grade}`);
+        console.log(`Grade: $s{grade}`);
     }
 }
 main();
