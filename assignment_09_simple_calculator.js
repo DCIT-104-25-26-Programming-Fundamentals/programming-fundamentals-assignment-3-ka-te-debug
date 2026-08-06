@@ -74,4 +74,111 @@
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
 
+const readlineSync = require('readline-sync');
 
+// FUNCTION 1: Addition
+function addition(a, b) {
+    return a + b;
+}
+
+// FUNCTION 2: Subtraction
+function subtraction(a, b) {
+    return a - b;
+}
+
+// FUNCTION 3: Multiplication
+function multiplication(a, b) {
+    return a * b;
+}
+
+// FUNCTION 4: Division
+function division(a, b) {
+    if (b === 0) {
+        return 'Error: Cannot divide by zero.';
+    }
+    return (a / b).toFixed(2);
+}
+
+// FUNCTION 5: Modulus
+function modulus(a, b) {
+    if (b === 0) {
+        return 'Error: Cannot divide by zero.';
+    }
+    return a % b;
+}
+
+// FUNCTION 6: Exponentiation
+function exponentiation(a, b) {
+    return (a ** b).toFixed(2);
+}
+
+// FUNCTION 7: Display Menu
+function displayMenu() {
+    console.log('\n=======================');
+    console.log('   SIMPLE CALCULATOR');
+    console.log('=======================');
+    console.log('1. Addition');
+    console.log('2. Subtraction');
+    console.log('3. Multiplication');
+    console.log('4. Division');
+    console.log('5. Modulus');
+    console.log('6. Exponentiation');
+    console.log('7. Quit');
+}
+
+// MAIN FUNCTION
+function main() {
+    let choice;
+    
+    do {
+        displayMenu();
+        choice = readlineSync.questionInt('Select an operation (1-7): ');
+        
+        if (choice >= 1 && choice <= 6) {
+            let num1 = readlineSync.questionFloat('Enter first number: ');
+            let num2 = readlineSync.questionFloat('Enter second number: ');
+            let result;
+            let operator;
+            
+            switch (choice) {
+                case 1:
+                    result = addition(num1, num2);
+                    operator = '+';
+                    break;
+                case 2:
+                    result = subtraction(num1, num2);
+                    operator = '-';
+                    break;
+                case 3:
+                    result = multiplication(num1, num2);
+                    operator = '*';
+                    break;
+                case 4:
+                    result = division(num1, num2);
+                    operator = '/';
+                    break;
+                case 5:
+                    result = modulus(num1, num2);
+                    operator = '%';
+                    break;
+                case 6:
+                    result = exponentiation(num1, num2);
+                    operator = '**';
+                    break;
+            }
+            
+            // Only print result format if it's not an error message
+            if (typeof result === 'string' && result.startsWith('Error')) {
+                console.log(result);
+            } else {
+                console.log(`Result: ${num1} ${operator} ${num2} = ${result}`);
+            }
+        } else if (choice === 7) {
+            console.log('Goodbye!');
+        } else {
+            console.log('Error: Invalid choice. Please enter 1-7.');
+        }
+    } while (choice!== 7);
+}
+
+main();
